@@ -20,7 +20,7 @@ Children:
         validators: null
         value: []
     Base: Subsystem
-    Name: Test
+    Name: DriveTrain
   Properties: {}
   Base: Subsystems
   Name: Subsystems
