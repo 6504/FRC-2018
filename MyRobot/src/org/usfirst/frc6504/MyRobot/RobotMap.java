@@ -45,10 +45,10 @@ public class RobotMap {
         driveTrainBackLeft.setInverted(false);
         driveTrainFrontRight = new Spark(2);
         LiveWindow.addActuator("DriveTrain", "Front Right", (Spark) driveTrainFrontRight);
-        driveTrainFrontRight.setInverted(true);
+        driveTrainFrontRight.setInverted(false);
         driveTrainBackRight = new Spark(3);
         LiveWindow.addActuator("DriveTrain", "Back Right", (Spark) driveTrainBackRight);
-        driveTrainBackRight.setInverted(true);
+        driveTrainBackRight.setInverted(false);
         driveTrainRobotDrive = new MecanumDrive(driveTrainFrontLeft, driveTrainBackLeft,
               driveTrainFrontRight, driveTrainBackRight);
         LiveWindow.addActuator("DriveTrain", "Robot Drive", driveTrainRobotDrive);
