@@ -50,34 +50,34 @@ public class DriveForward extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-    	myGyro.reset();
-        setTimeout(4);
+    	myGyro.reset(); //Reset gyro angle 
+        setTimeout(4); //Set a runtime of _ seconds
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
         double angle = myGyro.getAngle(); // get current heading
-        //Drive forward, then check angle, make corrections, then drive forwards again 
-        robotDrive.driveCartesian(-angle*Kp, -0.3, 0, 0);
-        Timer.delay(0.004);
+        robotDrive.driveCartesian(-angle*Kp, -0.3, 0, 0); //Drive forward, then check angle, make corrections, then drive forwards again 
+        Timer.delay(0.004); 
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        return isTimedOut();
+        return isTimedOut(); //Stop command after runtime of _ seconds has been reached 
     }
 
     // Called once after isFinished returns true
     @Override
     protected void end() {
-    	Robot.driveTrain.stop();
+    	Robot.driveTrain.stop(); //Stop DriveTrain
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
+    	
     }
 }
