@@ -60,7 +60,7 @@ public class Main {
     // that can be used
     UsbCamera camera = setUsbCamera(0, inputStream);
     // Set the resolution for our camera, since this is over USB
-    camera.setResolution(640,480);
+    camera.setResolution(853,480);
     
 
     // This creates a CvSink for us to use. This grabs images from our selected camera, 
