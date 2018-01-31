@@ -67,7 +67,7 @@ public class DriveTrain extends Subsystem {
     //Taking Joystick input/getting input from gyro
     public void takeJoystickInput(Joystick logitechJoystick0) {
     	robotDrive.driveCartesian(logitechJoystick0.getX(), logitechJoystick0.getY(),
-    			logitechJoystick0.getZ(), myGyro.getAngle());
+    			logitechJoystick0.getZ(), RobotMap.gyro.getAngle());
     	//robotDrive.driveCartesian(xbox360joyStick1.getRawAxis(0), xbox360joyStick1.getRawAxis(0), 0.0);
 
     }

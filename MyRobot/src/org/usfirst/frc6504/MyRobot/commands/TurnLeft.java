@@ -46,7 +46,7 @@ public class TurnLeft extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-    	myGyro.reset();
+    	RobotMap.gyro.reset();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -58,7 +58,7 @@ public class TurnLeft extends Command {
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        return myGyro.getAngle() <= -90.0;
+        return RobotMap.gyro.getAngle() <= -90.0;
     }
 
     // Called once after isFinished returns true

@@ -50,14 +50,14 @@ public class DriveForward extends Command {
     @Override
     protected void initialize() {
     	//Reset angle and set timer of _ seconds
-    	myGyro.reset();
+    	RobotMap.gyro.reset();
     	setTimeout(4);
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-    	double angle = myGyro.getAngle(); // get current heading
+    	double angle = RobotMap.gyro.getAngle(); // get current heading
     	robotDrive.driveCartesian(-angle*Kp, -1, 0, 0);
     	Timer.delay(0.004);
     }
