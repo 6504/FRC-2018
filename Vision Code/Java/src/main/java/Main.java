@@ -62,13 +62,13 @@ public class Main {
     // that can be used
     UsbCamera camera = setUsbCamera("FrontCamera", 0, inputStream);
     // Set the resolution for our camera, since this is over USB
-    camera.setResolution(1920,1080);
-    camera.setFPS(60);
+    camera.setResolution(1280, 720);
+    camera.setFPS(30);
     
     UsbCamera camera2 = setUsbCamera("BackCamera", 1, inputStream2);
     // Setting resolution for 2nd camera
-    camera2.setResolution(1920, 1080);
-    camera2.setFPS(60);
+    camera2.setResolution(1280, 720);
+    camera2.setFPS(30);
 
     // This creates a CvSink for us to use. This grabs images from our selected camera, 
     // and will allow us to use those images in opencv
