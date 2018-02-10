@@ -28,7 +28,7 @@ public class Main {
     // This stores our reference to our mjpeg server for streaming the input image
     MjpegServer inputStream = new MjpegServer("MJPEG Server", streamPort);
     MjpegServer inputStream2 = new MjpegServer("Back MJPEG Server", streamPort2);
-    MjpegServer inputStream3 = new MjpegServer("",1);
+    MjpegServer inputStream3 = new MjpegServer("",1);//Added int due to faulty constructor
 
     // Selecting a Camera
     // Uncomment one of the 2 following camera options
