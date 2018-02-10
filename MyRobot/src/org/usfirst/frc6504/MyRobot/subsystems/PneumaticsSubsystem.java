@@ -55,6 +55,16 @@ public class PneumaticsSubsystem extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
+    
+    public void extend() {
+    	doubleSolenoid1.set(DoubleSolenoid.Value.kForward);
+    }
+    public void retract() {
+    	doubleSolenoid1.set(DoubleSolenoid.Value.kReverse);
+    }
+    public void end() {
+    	doubleSolenoid1.set(DoubleSolenoid.Value.kOff);
+    }
 
 }
 
