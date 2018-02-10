@@ -62,7 +62,7 @@ public class PneumaticsSubsystem extends Subsystem {
     public void retract() {
     	doubleSolenoid1.set(DoubleSolenoid.Value.kReverse);
     }
-    public void end() {
+    public void stop() {
     	doubleSolenoid1.set(DoubleSolenoid.Value.kOff);
     }
 

@@ -56,7 +56,7 @@ public class PneumaticPistonExtend extends Command {
     // Called once after isFinished returns true
     @Override
     protected void end() {
-    	pneumaticsSubsystemDoubleSolenoid1.set(DoubleSolenoid.Value.kOff);
+    	Robot.pneumaticsSubsystem.stop();
 }
 
     // Called when another command which requires one or more of the same
