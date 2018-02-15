@@ -43,6 +43,7 @@ public class RobotMap {
     public static AnalogGyro driveTrainMyGyro;
     public static Compressor pneumaticsSubsystemCompressor1;
     public static DoubleSolenoid pneumaticsSubsystemDoubleSolenoid1;
+    public static DoubleSolenoid pneumaticsSubsystemDoubleSolenoid2;
     public static SpeedController liftStage1SubsystemSpeedController1;
     public static SpeedController liftStage2SubsystemSpeedController1;
     public static SpeedController intakeSubsystemSpeedController1;
@@ -80,6 +81,9 @@ public class RobotMap {
         
         pneumaticsSubsystemDoubleSolenoid1 = new DoubleSolenoid(0, 5, 4);
         LiveWindow.addActuator("PneumaticsSubsystem", "Double Solenoid 1", pneumaticsSubsystemDoubleSolenoid1);
+        
+        pneumaticsSubsystemDoubleSolenoid2 = new DoubleSolenoid(0, 7, 6);
+        LiveWindow.addActuator("PneumaticsSubsystem", "Double Solenoid 2", pneumaticsSubsystemDoubleSolenoid2);
         
         liftStage1SubsystemSpeedController1 = new PWMVictorSPX(8);
         LiveWindow.addActuator("LiftStage1Subsystem", "Speed Controller 1", (PWMVictorSPX) liftStage1SubsystemSpeedController1);
