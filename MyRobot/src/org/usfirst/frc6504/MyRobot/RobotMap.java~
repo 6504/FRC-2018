@@ -16,7 +16,6 @@ import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.PWMVictorSPX;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
@@ -45,7 +44,6 @@ public class RobotMap {
     public static DoubleSolenoid pneumaticsSubsystemDoubleSolenoid1;
     public static DoubleSolenoid pneumaticsSubsystemDoubleSolenoid2;
     public static SpeedController liftStage1SubsystemSpeedController1;
-    public static SpeedController liftStage2SubsystemSpeedController1;
     public static SpeedController intakeSubsystemSpeedController1;
     public static SpeedController intakeSubsystemSpeedController2;
 
@@ -85,12 +83,9 @@ public class RobotMap {
         pneumaticsSubsystemDoubleSolenoid2 = new DoubleSolenoid(0, 7, 6);
         LiveWindow.addActuator("PneumaticsSubsystem", "Double Solenoid 2", pneumaticsSubsystemDoubleSolenoid2);
         
-        liftStage1SubsystemSpeedController1 = new PWMVictorSPX(8);
-        LiveWindow.addActuator("LiftStage1Subsystem", "Speed Controller 1", (PWMVictorSPX) liftStage1SubsystemSpeedController1);
+        liftStage1SubsystemSpeedController1 = new Spark(8);
+        LiveWindow.addActuator("LiftStage1Subsystem", "Speed Controller 1", (Spark) liftStage1SubsystemSpeedController1);
         liftStage1SubsystemSpeedController1.setInverted(false);
-        liftStage2SubsystemSpeedController1 = new PWMVictorSPX(9);
-        LiveWindow.addActuator("LiftStage2Subsystem", "Speed Controller 1", (PWMVictorSPX) liftStage2SubsystemSpeedController1);
-        liftStage2SubsystemSpeedController1.setInverted(false);
         intakeSubsystemSpeedController1 = new Spark(7);
         LiveWindow.addActuator("IntakeSubsystem", "Speed Controller 1", (Spark) intakeSubsystemSpeedController1);
         intakeSubsystemSpeedController1.setInverted(false);

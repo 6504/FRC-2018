@@ -24,10 +24,9 @@ import org.opencv.objdetect.*;
 public class GripPipeline {
 
 	//Outputs
-	private Mat cvResizeOutput = new Mat();
 	private Mat hslThresholdOutput = new Mat();
-	private Mat maskOutput = new Mat();
-	private MatOfKeyPoint findBlobsOutput = new MatOfKeyPoint();
+	private ArrayList<MatOfPoint> findContoursOutput = new ArrayList<MatOfPoint>();
+	private ArrayList<MatOfPoint> filterContoursOutput = new ArrayList<MatOfPoint>();
 
 	static {
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
@@ -37,41 +36,33 @@ public class GripPipeline {
 	 * This is the primary method that runs the entire pipeline and updates the outputs.
 	 */
 	public void process(Mat source0) {
-		// Step CV_resize0:
-		Mat cvResizeSrc = source0;
-		Size cvResizeDsize = new Size(0, 0);
-		double cvResizeFx = 0.25;
-		double cvResizeFy = 0.25;
-		int cvResizeInterpolation = Imgproc.INTER_LINEAR;
-		cvResize(cvResizeSrc, cvResizeDsize, cvResizeFx, cvResizeFy, cvResizeInterpolation, cvResizeOutput);
-
 		// Step HSL_Threshold0:
-		Mat hslThresholdInput = cvResizeOutput;
-		double[] hslThresholdHue = {132.73381294964025, 180.0};
-		double[] hslThresholdSaturation = {50.44964028776978, 211.48464163822527};
-		double[] hslThresholdLuminance = {73.38129496402877, 255.0};
+		Mat hslThresholdInput = source0;
+		double[] hslThresholdHue = {77.6978417266187, 93.99317406143345};
+		double[] hslThresholdSaturation = {174.28057553956833, 255.0};
+		double[] hslThresholdLuminance = {45.86330935251798, 255.0};
 		hslThreshold(hslThresholdInput, hslThresholdHue, hslThresholdSaturation, hslThresholdLuminance, hslThresholdOutput);
 
-		// Step Mask0:
-		Mat maskInput = cvResizeOutput;
-		Mat maskMask = hslThresholdOutput;
-		mask(maskInput, maskMask, maskOutput);
+		// Step Find_Contours0:
+		Mat findContoursInput = hslThresholdOutput;
+		boolean findContoursExternalOnly = false;
+		findContours(findContoursInput, findContoursExternalOnly, findContoursOutput);
 
-		// Step Find_Blobs0:
-		Mat findBlobsInput = maskOutput;
-		double findBlobsMinArea = 1;
-		double[] findBlobsCircularity = {0.0, 1.0};
-		boolean findBlobsDarkBlobs = false;
-		findBlobs(findBlobsInput, findBlobsMinArea, findBlobsCircularity, findBlobsDarkBlobs, findBlobsOutput);
+		// Step Filter_Contours0:
+		ArrayList<MatOfPoint> filterContoursContours = findContoursOutput;
+		double filterContoursMinArea = 2000.0;
+		double filterContoursMinPerimeter = 0;
+		double filterContoursMinWidth = 0;
+		double filterContoursMaxWidth = 1000;
+		double filterContoursMinHeight = 0;
+		double filterContoursMaxHeight = 1000;
+		double[] filterContoursSolidity = {0, 100};
+		double filterContoursMaxVertices = 1000000;
+		double filterContoursMinVertices = 0;
+		double filterContoursMinRatio = 0;
+		double filterContoursMaxRatio = 1000;
+		filterContours(filterContoursContours, filterContoursMinArea, filterContoursMinPerimeter, filterContoursMinWidth, filterContoursMaxWidth, filterContoursMinHeight, filterContoursMaxHeight, filterContoursSolidity, filterContoursMaxVertices, filterContoursMinVertices, filterContoursMinRatio, filterContoursMaxRatio, filterContoursOutput);
 
-	}
-
-	/**
-	 * This method is a generated getter for the output of a CV_resize.
-	 * @return Mat output from CV_resize.
-	 */
-	public Mat cvResizeOutput() {
-		return cvResizeOutput;
 	}
 
 	/**
@@ -83,38 +74,21 @@ public class GripPipeline {
 	}
 
 	/**
-	 * This method is a generated getter for the output of a Mask.
-	 * @return Mat output from Mask.
+	 * This method is a generated getter for the output of a Find_Contours.
+	 * @return ArrayList<MatOfPoint> output from Find_Contours.
 	 */
-	public Mat maskOutput() {
-		return maskOutput;
+	public ArrayList<MatOfPoint> findContoursOutput() {
+		return findContoursOutput;
 	}
 
 	/**
-	 * This method is a generated getter for the output of a Find_Blobs.
-	 * @return MatOfKeyPoint output from Find_Blobs.
+	 * This method is a generated getter for the output of a Filter_Contours.
+	 * @return ArrayList<MatOfPoint> output from Filter_Contours.
 	 */
-	public MatOfKeyPoint findBlobsOutput() {
-		return findBlobsOutput;
+	public ArrayList<MatOfPoint> filterContoursOutput() {
+		return filterContoursOutput;
 	}
 
-
-	/**
-	 * Resizes an image.
-	 * @param src The image to resize.
-	 * @param dSize size to set the image.
-	 * @param fx scale factor along X axis.
-	 * @param fy scale factor along Y axis.
-	 * @param interpolation type of interpolation to use.
-	 * @param dst output image.
-	 */
-	private void cvResize(Mat src, Size dSize, double fx, double fy, int interpolation,
-		Mat dst) {
-		if (dSize==null) {
-			dSize = new Size(0,0);
-		}
-		Imgproc.resize(src, dst, dSize, fx, fy, interpolation);
-	}
 
 	/**
 	 * Segment an image based on hue, saturation, and luminance ranges.
@@ -133,75 +107,74 @@ public class GripPipeline {
 	}
 
 	/**
-	 * Filter out an area of an image using a binary mask.
-	 * @param input The image on which the mask filters.
-	 * @param mask The binary image that is used to filter.
+	 * Sets the values of pixels in a binary image to their distance to the nearest black pixel.
+	 * @param input The image on which to perform the Distance Transform.
+	 * @param type The Transform.
+	 * @param maskSize the size of the mask.
 	 * @param output The image in which to store the output.
 	 */
-	private void mask(Mat input, Mat mask, Mat output) {
-		mask.convertTo(mask, CvType.CV_8UC1);
-		Core.bitwise_xor(output, output, output);
-		input.copyTo(output, mask);
+	private void findContours(Mat input, boolean externalOnly,
+		List<MatOfPoint> contours) {
+		Mat hierarchy = new Mat();
+		contours.clear();
+		int mode;
+		if (externalOnly) {
+			mode = Imgproc.RETR_EXTERNAL;
+		}
+		else {
+			mode = Imgproc.RETR_LIST;
+		}
+		int method = Imgproc.CHAIN_APPROX_SIMPLE;
+		Imgproc.findContours(input, contours, hierarchy, mode, method);
 	}
 
+
 	/**
-	 * Detects groups of pixels in an image.
-	 * @param input The image on which to perform the find blobs.
-	 * @param minArea The minimum size of a blob that will be found
-	 * @param circularity The minimum and maximum circularity of blobs that will be found
-	 * @param darkBlobs The boolean that determines if light or dark blobs are found.
-	 * @param blobList The output where the MatOfKeyPoint is stored.
+	 * Filters out contours that do not meet certain criteria.
+	 * @param inputContours is the input list of contours
+	 * @param output is the the output list of contours
+	 * @param minArea is the minimum area of a contour that will be kept
+	 * @param minPerimeter is the minimum perimeter of a contour that will be kept
+	 * @param minWidth minimum width of a contour
+	 * @param maxWidth maximum width
+	 * @param minHeight minimum height
+	 * @param maxHeight maximimum height
+	 * @param Solidity the minimum and maximum solidity of a contour
+	 * @param minVertexCount minimum vertex Count of the contours
+	 * @param maxVertexCount maximum vertex Count
+	 * @param minRatio minimum ratio of width to height
+	 * @param maxRatio maximum ratio of width to height
 	 */
-	private void findBlobs(Mat input, double minArea, double[] circularity,
-		Boolean darkBlobs, MatOfKeyPoint blobList) {
-		FeatureDetector blobDet = FeatureDetector.create(FeatureDetector.SIMPLEBLOB);
-		try {
-			File tempFile = File.createTempFile("config", ".xml");
-
-			StringBuilder config = new StringBuilder();
-
-			config.append("<?xml version=\"1.0\"?>\n");
-			config.append("<opencv_storage>\n");
-			config.append("<thresholdStep>10.</thresholdStep>\n");
-			config.append("<minThreshold>50.</minThreshold>\n");
-			config.append("<maxThreshold>220.</maxThreshold>\n");
-			config.append("<minRepeatability>2</minRepeatability>\n");
-			config.append("<minDistBetweenBlobs>10.</minDistBetweenBlobs>\n");
-			config.append("<filterByColor>1</filterByColor>\n");
-			config.append("<blobColor>");
-			config.append((darkBlobs ? 0 : 255));
-			config.append("</blobColor>\n");
-			config.append("<filterByArea>1</filterByArea>\n");
-			config.append("<minArea>");
-			config.append(minArea);
-			config.append("</minArea>\n");
-			config.append("<maxArea>");
-			config.append(Integer.MAX_VALUE);
-			config.append("</maxArea>\n");
-			config.append("<filterByCircularity>1</filterByCircularity>\n");
-			config.append("<minCircularity>");
-			config.append(circularity[0]);
-			config.append("</minCircularity>\n");
-			config.append("<maxCircularity>");
-			config.append(circularity[1]);
-			config.append("</maxCircularity>\n");
-			config.append("<filterByInertia>1</filterByInertia>\n");
-			config.append("<minInertiaRatio>0.1</minInertiaRatio>\n");
-			config.append("<maxInertiaRatio>" + Integer.MAX_VALUE + "</maxInertiaRatio>\n");
-			config.append("<filterByConvexity>1</filterByConvexity>\n");
-			config.append("<minConvexity>0.95</minConvexity>\n");
-			config.append("<maxConvexity>" + Integer.MAX_VALUE + "</maxConvexity>\n");
-			config.append("</opencv_storage>\n");
-			FileWriter writer;
-			writer = new FileWriter(tempFile, false);
-			writer.write(config.toString());
-			writer.close();
-			blobDet.read(tempFile.getPath());
-		} catch (IOException e) {
-			e.printStackTrace();
+	private void filterContours(List<MatOfPoint> inputContours, double minArea,
+		double minPerimeter, double minWidth, double maxWidth, double minHeight, double
+		maxHeight, double[] solidity, double maxVertexCount, double minVertexCount, double
+		minRatio, double maxRatio, List<MatOfPoint> output) {
+		final MatOfInt hull = new MatOfInt();
+		output.clear();
+		//operation
+		for (int i = 0; i < inputContours.size(); i++) {
+			final MatOfPoint contour = inputContours.get(i);
+			final Rect bb = Imgproc.boundingRect(contour);
+			if (bb.width < minWidth || bb.width > maxWidth) continue;
+			if (bb.height < minHeight || bb.height > maxHeight) continue;
+			final double area = Imgproc.contourArea(contour);
+			if (area < minArea) continue;
+			if (Imgproc.arcLength(new MatOfPoint2f(contour.toArray()), true) < minPerimeter) continue;
+			Imgproc.convexHull(contour, hull);
+			MatOfPoint mopHull = new MatOfPoint();
+			mopHull.create((int) hull.size().height, 1, CvType.CV_32SC2);
+			for (int j = 0; j < hull.size().height; j++) {
+				int index = (int)hull.get(j, 0)[0];
+				double[] point = new double[] { contour.get(index, 0)[0], contour.get(index, 0)[1]};
+				mopHull.put(j, 0, point);
+			}
+			final double solid = 100 * area / Imgproc.contourArea(mopHull);
+			if (solid < solidity[0] || solid > solidity[1]) continue;
+			if (contour.rows() < minVertexCount || contour.rows() > maxVertexCount)	continue;
+			final double ratio = bb.width / (double)bb.height;
+			if (ratio < minRatio || ratio > maxRatio) continue;
+			output.add(contour);
 		}
-
-		blobDet.detect(input, blobList);
 	}
 
 

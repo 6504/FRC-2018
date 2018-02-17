@@ -23,12 +23,10 @@ public class Main {
     // By rules, this has to be between 1180 and 1190, so 1185 is a good choice
     int streamPort = 1185;
     int streamPort2 = 1187;
-    int streamPort3 = 1188;
 
     // This stores our reference to our mjpeg server for streaming the input image
     MjpegServer inputStream = new MjpegServer("MJPEG Server", streamPort);
     MjpegServer inputStream2 = new MjpegServer("Back MJPEG Server", streamPort2);
-    MjpegServer inputStream3 = new MjpegServer("",1);//Added int due to faulty constructor
 
     // Selecting a Camera
     // Uncomment one of the 2 following camera options
