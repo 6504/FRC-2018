@@ -45,9 +45,9 @@ public class LiftUp extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-       RobotMap.liftStage1SubsystemSpeedController1.set(1);
        while(RobotMap.liftStage1SubsystemLimitSwitch1.get())
        	RobotMap.liftStage1SubsystemSpeedController1.set(0);
+       RobotMap.liftStage1SubsystemSpeedController1.set(1);
        //RobotMap.liftStage2SubsystemSpeedController1.set(1);
     }
 
