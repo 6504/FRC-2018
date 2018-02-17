@@ -733,7 +733,7 @@ Children:
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Command
-<<<<<<< HEAD
+
     Name: Pneumatic Intake Out
   - Children: []
     Properties:
@@ -757,9 +757,9 @@ Children:
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Command
     Name: Test
-=======
+
     Name: Intake Out
->>>>>>> 3678b445b57a44129c3ad159dc889675ec5f93fd
+
   Properties: {}
   Base: Commands
   Name: Commands
