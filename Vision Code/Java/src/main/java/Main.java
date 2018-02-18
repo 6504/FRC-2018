@@ -62,12 +62,12 @@ public class Main {
     // that can be used
     UsbCamera camera = setUsbCamera("FrontCamera", 0, inputStream);
     // Set the resolution for our camera, since this is over USB
-    camera.setResolution(1280, 720);
+    camera.setResolution(640, 480);
     camera.setFPS(30);
     
     UsbCamera camera2 = setUsbCamera("BackCamera", 1, inputStream2);
     // Setting resolution for 2nd camera
-    camera2.setResolution(1280, 720);
+    camera2.setResolution(640, 480);
     camera2.setFPS(30);
 
     // This creates a CvSink for us to use. This grabs images from our selected camera, 
@@ -85,6 +85,7 @@ public class Main {
     // as they are expensive to create
     Mat inputImage = new Mat();
     Mat hsv = new Mat();
+    GripPipeline gripPipeline = new GripPipeline();
 
     // Infinitely process image
     while (true) {
@@ -94,13 +95,14 @@ public class Main {
       if (frameTime == 0) continue;
 
       // Below is where you would do your OpenCV operations on the provided image
+      gripPipeline.process(inputImage);
       // The sample below just changes color source to HSV
-      Imgproc.cvtColor(inputImage, hsv, Imgproc.COLOR_BGR2HSV);
+      //Imgproc.cvtColor(inputImage, hsv, Imgproc.COLOR_BGR2HSV);
 
       // Here is where you would write a processed image that you want to restreams
       // This will most likely be a marked up image of what the camera sees
       // For now, we are just going to stream the HSV image
-      imageSource.putFrame(hsv);
+      imageSource.putFrame(gripPipeline.hslThresholdOutput());
     }
   }
 
