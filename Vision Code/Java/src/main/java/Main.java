@@ -1,10 +1,15 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 
 import edu.wpi.first.wpilibj.networktables.*;
 import edu.wpi.first.wpilibj.tables.*;
 import edu.wpi.cscore.*;
 import org.opencv.core.Mat;
+import org.opencv.core.MatOfPoint;
+import org.opencv.core.Rect;
 import org.opencv.imgproc.Imgproc;
+import org.opencv.imgproc.Moments;
 
 public class Main {
   public static void main(String[] args) {
@@ -17,6 +22,8 @@ public class Main {
     NetworkTable.setTeam(6504);
 
     NetworkTable.initialize();
+	
+    NetworkTable visionNT = NetworkTable.getTable("Vision");
 
 
     // This is the network port you want to stream the raw received image to
@@ -62,12 +69,12 @@ public class Main {
     // that can be used
     UsbCamera camera = setUsbCamera("FrontCamera", 0, inputStream);
     // Set the resolution for our camera, since this is over USB
-    camera.setResolution(640, 480);
+    camera.setResolution(320, 240);
     camera.setFPS(30);
     
     UsbCamera camera2 = setUsbCamera("BackCamera", 1, inputStream2);
     // Setting resolution for 2nd camera
-    camera2.setResolution(640, 480);
+    camera2.setResolution(320, 240);
     camera2.setFPS(30);
 
     // This creates a CvSink for us to use. This grabs images from our selected camera, 
@@ -103,6 +110,35 @@ public class Main {
       // This will most likely be a marked up image of what the camera sees
       // For now, we are just going to stream the HSV image
       imageSource.putFrame(gripPipeline.hslThresholdOutput());
+      
+      // Compute center of each contour
+      ArrayList<MatOfPoint> contours = gripPipeline.filterContoursOutput();
+      Moments[] momentsArr = new Moments[contours.size()];
+      for(int i = 0; i < contours.size(); i++)
+      {
+    	  momentsArr[i] = Imgproc.moments(contours.get(i));
+      }
+      
+      Arrays.sort(momentsArr, Comparator.comparing((Moments m) -> m.m00).reversed());
+
+      double[] x = new double[contours.size()];
+      double[] y = new double[contours.size()];
+      double[] size = new double[contours.size()];
+      
+      for(int i = 0; i < contours.size(); i++)
+      {
+    	  Moments m = momentsArr[i];
+    	  // compute the center of the contour
+    	  x[i] = (int)(m.m10 / m.m00) - camera.getVideoMode().width/2;
+    	  y[i] = (int)(m.m01 / m.m00) - camera.getVideoMode().height/2;
+    	  size[i] = m.m00;
+      }
+      
+      visionNT.putNumberArray("x", x);
+      visionNT.putNumberArray("y", y);
+      visionNT.putNumberArray("size", size);
+      visionNT.putString("Objects Found (Before Filtering)", Integer.toString(gripPipeline.findContoursOutput().size()));
+      visionNT.putString("Objects Found", Integer.toString(contours.size()));
     }
   }
 
