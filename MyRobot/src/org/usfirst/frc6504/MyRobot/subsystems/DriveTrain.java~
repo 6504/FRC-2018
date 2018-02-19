@@ -69,6 +69,10 @@ public class DriveTrain extends Subsystem {
     	double zAxis = (XboxSticks.getRawAxis(3) - XboxSticks.getRawAxis(2))/1.5;
     	robotDrive.driveCartesian(XboxSticks.getX()/2.0, -XboxSticks.getY()/1.5,
     			XboxSticks.getRawAxis(4)/2.0);
+<<<<<<< HEAD
+=======
+    	
+>>>>>>> c83a3847fcf1d8d2528622470f17c78dd1ba4329
     }
     
     //Logitech axis method to steer
