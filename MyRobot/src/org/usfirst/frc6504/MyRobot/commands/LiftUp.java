@@ -62,7 +62,6 @@ public class LiftUp extends Command {
     protected void end() {
     	if(RobotMap.liftStage1SubsystemLimitSwitch1.get())
     	Robot.liftStage1Subsystem.stop(); 
-    	//Robot.liftStage2Subsystem.stop(); 
     }
 
     // Called when another command which requires one or more of the same

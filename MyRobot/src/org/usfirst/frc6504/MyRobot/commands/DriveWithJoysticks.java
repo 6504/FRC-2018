@@ -43,13 +43,18 @@ public class DriveWithJoysticks extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-    	Robot.driveTrain.takeJoystickInput(Robot.oi.getxbox360joyStick1());
+    	//Calling the Xbox driving method
+    	Robot.driveTrain.takeXboxInput(Robot.oi.getxbox360joyStick1());
+    	
+    	//Calling the Logitech driving method
+    	//Robot.driveTrain.takeLogitechInput(Robot.oi.getlogitechjoystick0());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        return false;
+    	//This was the original value:
+    	return false; 
     }
 
     // Called once after isFinished returns true

@@ -64,16 +64,18 @@ public class DriveTrain extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     
-    //Taking Joystick input/getting input from gyro
-    public void takeJoystickInput(Joystick logitechJoystick0) {
-    	double z = (logitechJoystick0.getRawAxis(3) - logitechJoystick0.getRawAxis(2))/1.5;
-    	robotDrive.driveCartesian(logitechJoystick0.getX()/2.0, -logitechJoystick0.getY()/1.5,
-    			logitechJoystick0.getRawAxis(4)/2.0);
-    	//robotDrive.driveCartesian(-logitechJoystick0.getX(), -logitechJoystick0.getY(),
-    	//		-logitechJoystick0.getZ(), RobotMap.gyro.getAngle());
-    	//robotDrive.driveCartesian(xbox360joyStick1.getRawAxis(0), xbox360joyStick1.getRawAxis(0), 0.0);
-
+    //Xbox axes method to steer; simulating z-axis
+    public void takeXboxInput(Joystick XboxSticks) {
+    	double zAxis = (XboxSticks.getRawAxis(3) - XboxSticks.getRawAxis(2))/1.5;
+    	robotDrive.driveCartesian(XboxSticks.getX()/2.0, -XboxSticks.getY()/1.5,
+    			XboxSticks.getRawAxis(4)/2.0);
     }
+    
+    //Logitech axis method to steer
+    /*public void takeLogitechInput(Joystick logitechStick) {
+	  robotDrive.driveCartesian(-logitechStick.getX(), -logitechStick.getY(),
+			-logitechStick.getZ(), RobotMap.gyro.getAngle());
+    } */
     
     //Stop method
     public void stop() {
