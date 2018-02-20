@@ -52,6 +52,7 @@ public class PneumaticsSubsystem extends Subsystem {
     public void periodic() {
         // Put code here to be run every loop
         SmartDashboard.putBoolean("Air pressure is low", compressor1.getPressureSwitchValue()); //Tells whether pressure is low
+        SmartDashboard.putNumber("Compressor power", compressor1.getCompressorCurrent());
     }
 
     // Put methods for controlling this subsystem

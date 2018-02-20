@@ -79,6 +79,10 @@ public class Robot extends TimedRobot {
         SmartDashboard.putData("Auto mode", chooser);
         RobotMap.gyro.calibrate();
         RobotMap.gyro.reset();
+        
+        //Clear all sticky faults
+        RobotMap.pDPSystemPDP.clearStickyFaults();
+        RobotMap.pneumaticsSubsystemCompressor1.clearAllPCMStickyFaults();
     }
 
     /**                              
