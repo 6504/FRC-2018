@@ -77,7 +77,6 @@ public class OI {
 
 
         // SmartDashboard Buttons
-        SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
         SmartDashboard.putData("Drive Forward", new DriveForward());
         SmartDashboard.putData("Turn Left", new TurnLeft());
         SmartDashboard.putData("Drive Backward", new DriveBackward());
