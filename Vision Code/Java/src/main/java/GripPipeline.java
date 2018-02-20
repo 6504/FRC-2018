@@ -38,18 +38,8 @@ public class GripPipeline {
 	public void process(Mat source0) {
 		// Step HSL_Threshold0:
 		Mat hslThresholdInput = source0;
-<<<<<<< HEAD
-<<<<<<< HEAD
-		double[] hslThresholdHue = {77.6978417266187, 93.99317406143345};
-		double[] hslThresholdSaturation = {73.0, 255.0};
-=======
 		double[] hslThresholdHue = {74.46043165467626, 97.06484641638225};
 		double[] hslThresholdSaturation = {73.38129496402877, 255.0};
->>>>>>> c83a3847fcf1d8d2528622470f17c78dd1ba4329
-=======
-		double[] hslThresholdHue = {74.46043165467626, 97.06484641638225};
-		double[] hslThresholdSaturation = {73.38129496402877, 255.0};
->>>>>>> c83a3847fcf1d8d2528622470f17c78dd1ba4329
 		double[] hslThresholdLuminance = {45.86330935251798, 255.0};
 		hslThreshold(hslThresholdInput, hslThresholdHue, hslThresholdSaturation, hslThresholdLuminance, hslThresholdOutput);
 
