@@ -45,22 +45,22 @@ public class LiftUp extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-       while(RobotMap.liftStage1SubsystemLimitSwitch1.get())
-       	RobotMap.liftStage1SubsystemSpeedController1.set(0);
-       RobotMap.liftStage1SubsystemSpeedController1.set(1);
+       if(RobotMap.liftStage1SubsystemLimitSwitch1.get())
+    	   RobotMap.liftStage1SubsystemSpeedController1.set(0);
+       else
+    	   RobotMap.liftStage1SubsystemSpeedController1.set(1);
        //RobotMap.liftStage2SubsystemSpeedController1.set(1);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        return false; //TO-DO: Return true when sensor is hit 
+        return RobotMap.liftStage1SubsystemLimitSwitch1.get();
     }
 
     // Called once after isFinished returns true
     @Override
     protected void end() {
-    	if(RobotMap.liftStage1SubsystemLimitSwitch1.get())
     	Robot.liftStage1Subsystem.stop(); 
     }
 
