@@ -12,7 +12,10 @@
 package org.usfirst.frc6504.MyRobot.commands;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.drive.MecanumDrive;
+
 import org.usfirst.frc6504.MyRobot.Robot;
+import org.usfirst.frc6504.MyRobot.RobotMap;
 
 /**
  *
@@ -37,9 +40,11 @@ public class AutoLeft extends Command {
     }
     
     boolean commandRun;
+    private final MecanumDrive robotDrive = RobotMap.driveTrainRobotDrive;
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
+    	RobotMap.gyro.reset();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -51,7 +56,7 @@ public class AutoLeft extends Command {
         {
 		  if(gameData.charAt(0) == 'L')
 		  {
-			//Put left auto code here
+			robotDrive.driveCartesian(0, 0, -0.5, 0);
 			commandRun = true;
 		  } else if (gameData.charAt(0) == 'R') {
 			//Put right auto code here
