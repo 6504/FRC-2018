@@ -49,8 +49,16 @@ public class PDPSystem extends Subsystem {
     @Override
     public void periodic() {
       // Put code here to be run every loop
+      //Pushing amperage values to SmartDashboard
       SmartDashboard.putNumber("Total power", pDP.getTotalCurrent());
-      //TO-DO: Put in data values for the power usage of each motor
+      SmartDashboard.putNumber("Back right wheel", pDP.getCurrent(0));
+      SmartDashboard.putNumber("Front right wheel", pDP.getCurrent(1));
+      SmartDashboard.putNumber("Front left wheel", pDP.getCurrent(14));
+      SmartDashboard.putNumber("Back left wheel", pDP.getCurrent(15));
+      SmartDashboard.putNumber("Lift motor", pDP.getCurrent(12));
+      SmartDashboard.putNumber("Climber Motor 1", pDP.getCurrent(2));
+      SmartDashboard.putNumber("Climber Motor 2", pDP.getCurrent(3));
+      
     }
 
     // Put methods for controlling this subsystem

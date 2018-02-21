@@ -52,7 +52,7 @@ public class AutoLine extends Command {
     @Override
     protected void execute() {
     	double angle = RobotMap.gyro.getAngle(); // get current heading
-    	robotDrive.driveCartesian(0, -1, -angle*Kp);
+    	robotDrive.driveCartesian(0, 1, -angle*Kp);
     }
 
     // Make this return true when this Command no longer needs to run execute()
