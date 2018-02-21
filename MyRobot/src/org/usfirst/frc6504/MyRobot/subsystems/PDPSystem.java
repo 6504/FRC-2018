@@ -56,6 +56,8 @@ public class PDPSystem extends Subsystem {
       SmartDashboard.putNumber("Front left wheel", pDP.getCurrent(14));
       SmartDashboard.putNumber("Back left wheel", pDP.getCurrent(15));
       SmartDashboard.putNumber("Lift motor", pDP.getCurrent(12));
+      SmartDashboard.putNumber("Climber Motor 1", pDP.getCurrent(2));
+      SmartDashboard.putNumber("Climber Motor 2", pDP.getCurrent(3));
       
     }
 

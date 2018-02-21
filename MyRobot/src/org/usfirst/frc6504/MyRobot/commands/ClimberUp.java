@@ -45,7 +45,7 @@ public class ClimberUp extends Command {
     @Override
     protected void execute() {
     	RobotMap.climbingSubsystemClimber1.set(1);
-    	RobotMap.climbingSubsystemClimber2.set(2);
+    	RobotMap.climbingSubsystemClimber2.set(1);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -64,5 +64,6 @@ public class ClimberUp extends Command {
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
+    	end();
     }
 }
