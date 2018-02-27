@@ -43,22 +43,25 @@ public class TurnRightMiddle extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
+    	RobotMap.gyro.reset();
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
+    	robotDrive.driveCartesian(0, 0, 0.5, 0);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        return false;
+        return RobotMap.gyro.getAngle() <= 13.0;
     }
 
     // Called once after isFinished returns true
     @Override
     protected void end() {
+    	Robot.driveTrain.stop();
     }
 
     // Called when another command which requires one or more of the same
