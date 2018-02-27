@@ -56,7 +56,7 @@ public class Turn__DegreesRight extends Command {
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-    	return RobotMap.gyro.getAngle() <= 15.0;
+    	return RobotMap.gyro.getAngle() <= 15.0; //TO-DO: Adjust value accordingly 
     }
 
     // Called once after isFinished returns true

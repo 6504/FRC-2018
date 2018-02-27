@@ -45,7 +45,7 @@ public class AutoLine extends Command {
     @Override
     protected void initialize() {
     	RobotMap.gyro.reset();
-    	setTimeout(2);
+    	setTimeout(2); //TO-DO: Adjust value accordingly
     }
 
     // Called repeatedly when this Command is scheduled to run

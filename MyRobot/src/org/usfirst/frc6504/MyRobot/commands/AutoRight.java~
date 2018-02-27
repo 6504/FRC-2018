@@ -12,6 +12,8 @@
 package org.usfirst.frc6504.MyRobot.commands;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
+
 import org.usfirst.frc6504.MyRobot.Robot;
 import org.usfirst.frc6504.MyRobot.RobotMap;
 
@@ -39,7 +41,7 @@ public class AutoRight extends Command {
         requires(Robot.pneumaticsSubsystem);
     }
     
-    boolean commandRun;
+    private boolean commandRun;
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
@@ -56,14 +58,10 @@ public class AutoRight extends Command {
         {
 		  if(gameData.charAt(0) == 'L')
 		  {
-			//Turn left
-			//Drive to target, using a PID loop
-			//Elevate lift while driving
-			//Stop suddenly and drop the cube
+			Scheduler.getInstance().add(new AutoLine()); //Make the robot drive over the auto line
 			commandRun = true;
 		  } else if(gameData.charAt(0) == 'R') {
-			//Drive to target, using a PID loop
-			//Stop suddenly and drop the cube 
+			Scheduler.getInstance().add(new AutoRightRight()); //Make the robot drive to the right side of the switch
 			commandRun = true;
 		  }
         }

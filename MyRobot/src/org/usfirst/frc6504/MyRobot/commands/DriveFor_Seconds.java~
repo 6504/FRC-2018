@@ -45,7 +45,7 @@ public class DriveFor_Seconds extends Command {
     @Override
     protected void initialize() {
     	RobotMap.gyro.reset();
-    	setTimeout(4);
+    	setTimeout(4); //TO-DO: Adjust value accordingly
     }
 
     // Called repeatedly when this Command is scheduled to run
