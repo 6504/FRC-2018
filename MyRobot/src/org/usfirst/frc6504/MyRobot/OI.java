@@ -68,7 +68,7 @@ public class OI {
         xbox360joyStick1 = new Joystick(0);
         
         climbUpButton = new JoystickButton(xbox360joyStick1, 3);
-        climbUpButton.whenPressed(new ClimberUp());
+        climbUpButton.whileHeld(new ClimberUp());
         pneumaticOut = new JoystickButton(xbox360joyStick1, 2);
         pneumaticOut.whenPressed(new PneumaticIntakeOut());
         pneumaticIn = new JoystickButton(xbox360joyStick1, 1);
