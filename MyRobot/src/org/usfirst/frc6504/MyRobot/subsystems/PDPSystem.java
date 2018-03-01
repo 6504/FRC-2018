@@ -52,14 +52,14 @@ public class PDPSystem extends Subsystem {
     public void periodic() {
       // Put code here to be run every loop
       //Pushing amperage values to SmartDashboard
-      //SmartDashboard.putNumber("Total power", pDP.getTotalCurrent());
-      //SmartDashboard.putNumber("Back right wheel", pDP.getCurrent(0));
-      //SmartDashboard.putNumber("Front right wheel", pDP.getCurrent(1));
-      //SmartDashboard.putNumber("Front left wheel", pDP.getCurrent(14));
-      //SmartDashboard.putNumber("Back left wheel", pDP.getCurrent(15));
-      //SmartDashboard.putNumber("Lift motor", pDP.getCurrent(12));
-      //SmartDashboard.putNumber("Climber Motor 1", pDP.getCurrent(2));
-      //SmartDashboard.putNumber("Climber Motor 2", pDP.getCurrent(3));
+      SmartDashboard.putNumber("Total power", pDP.getTotalCurrent());
+      SmartDashboard.putNumber("Back right wheel", pDP.getCurrent(0));
+      SmartDashboard.putNumber("Front right wheel", pDP.getCurrent(1));
+      SmartDashboard.putNumber("Front left wheel", pDP.getCurrent(14));
+      SmartDashboard.putNumber("Back left wheel", pDP.getCurrent(15));
+      SmartDashboard.putNumber("Lift motor", pDP.getCurrent(12));
+      SmartDashboard.putNumber("Climber Motor 1", pDP.getCurrent(2));
+      SmartDashboard.putNumber("Climber Motor 2", pDP.getCurrent(3));
       
       //Battery voltage
       SmartDashboard.putNumber("Battery Voltage", DriverStation.getInstance().getBatteryVoltage());
