@@ -45,16 +45,13 @@ public class LiftDown extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        if(RobotMap.liftStage1SubsystemLimitSwitch1.get())
-        	RobotMap.liftStage1SubsystemSpeedController1.set(0);
-        else
-        	RobotMap.liftStage1SubsystemSpeedController1.set(-1);
+        RobotMap.liftStage1SubsystemSpeedController1.set(-1); 
     	//RobotMap.liftStage2SubsystemSpeedController1.set(-1);
     }
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        return RobotMap.liftStage1SubsystemLimitSwitch1.get();
+        return false;
     }
 
     // Called once after isFinished returns true
