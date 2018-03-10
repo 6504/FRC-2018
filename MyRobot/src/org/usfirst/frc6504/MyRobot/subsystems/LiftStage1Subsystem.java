@@ -69,6 +69,7 @@ public class LiftStage1Subsystem extends Subsystem {
     // here. Call these from Commands.
     public void stop() {
     	speedController1.set(0);
+    	speedController1.stopMotor();
     }
 }
 

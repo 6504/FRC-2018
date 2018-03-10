@@ -96,6 +96,7 @@ public class OI {
         SmartDashboard.putData("Turn Right", new TurnRight());
         SmartDashboard.putData("Auto Right", new AutoRight());
         SmartDashboard.putData("Auto Line", new AutoLine());
+        SmartDashboard.putData("Auto Line With Lift", new AutoLineWithLift());
         SmartDashboard.putData("Auto Left", new AutoLeft());
         SmartDashboard.putData("Auto Middle", new AutoMiddle());
         SmartDashboard.putData("Auto Left Left", new AutoLeftLeft());

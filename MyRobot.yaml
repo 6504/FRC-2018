@@ -900,7 +900,7 @@ Children:
         validators: &id026 [List]
         value:
         - &id021 !!robotbuilder.data.CommandGroupEntry
-          command: &id027
+          command:
             base: &id020
               help: A command specifies an action that the robot can perform.
               name: Command
@@ -936,10 +936,10 @@ Children:
             value: []
           previous: null
         - &id022 !!robotbuilder.data.CommandGroupEntry
-          command: &id038
+          command:
             base: *id020
             name: Strafe Right
-            properties: &id042
+            properties: &id040
               Autonomous Selection: !!robotbuilder.data.properties.BooleanProperty {
                 default: false, name: Autonomous Selection, validators: null, value: false}
               Parameters: !!robotbuilder.data.properties.ParametersProperty
@@ -967,10 +967,10 @@ Children:
             value: []
           previous: *id021
         - !!robotbuilder.data.CommandGroupEntry
-          command: &id029
+          command:
             base: *id020
             name: Lift Up _ Seconds
-            properties: &id044
+            properties: &id030
               Autonomous Selection: !!robotbuilder.data.properties.BooleanProperty {
                 default: false, name: Autonomous Selection, validators: null, value: false}
               Parameters: !!robotbuilder.data.properties.ParametersProperty
@@ -998,7 +998,7 @@ Children:
             value: []
           previous: *id022
         - &id025 !!robotbuilder.data.CommandGroupEntry
-          command: &id031
+          command:
             base: *id020
             name: Auto Line
             properties: *id023
@@ -1011,7 +1011,7 @@ Children:
             value: []
           previous: *id022
         - !!robotbuilder.data.CommandGroupEntry
-          command: &id032
+          command:
             base: *id020
             name: Pneumatic Intake Out
             properties: *id024
@@ -1048,8 +1048,34 @@ Children:
         name: Commands
         validators: *id026
         value:
-        - &id028 !!robotbuilder.data.CommandGroupEntry
-          command: *id027
+        - &id029 !!robotbuilder.data.CommandGroupEntry
+          command:
+            base: &id028
+              help: A command specifies an action that the robot can perform.
+              name: Command
+              properties:
+              - !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+                name: Requires, type: Subsystem, validators: null, value: None}
+              - !!robotbuilder.data.properties.BooleanProperty {default: true, name: Button on SmartDashboard,
+                validators: null, value: true}
+              - !!robotbuilder.data.properties.ParametersProperty
+                default: []
+                name: Parameters
+                validators: null
+                value: []
+              - !!robotbuilder.data.properties.ParameterSetProperty
+                default: &id027 []
+                name: Parameter presets
+                validators: null
+                value: *id027
+              - !!robotbuilder.data.properties.BooleanProperty {default: false, name: Run When Disabled,
+                validators: null, value: false}
+              - !!robotbuilder.data.properties.BooleanProperty {default: false, name: Autonomous Selection,
+                validators: null, value: false}
+              supports: {}
+              type: Command
+            name: Pneumatic Intake In
+            properties: *id019
           hasMatch: true
           order: Sequential
           parameters:
@@ -1058,11 +1084,11 @@ Children:
             validators: null
             value: []
           previous: null
-        - &id030 !!robotbuilder.data.CommandGroupEntry
-          command: &id034
-            base: *id020
+        - &id031 !!robotbuilder.data.CommandGroupEntry
+          command:
+            base: *id028
             name: Strafe Left
-            properties: &id043
+            properties: &id035
               Autonomous Selection: !!robotbuilder.data.properties.BooleanProperty {
                 default: false, name: Autonomous Selection, validators: null, value: false}
               Parameters: !!robotbuilder.data.properties.ParametersProperty
@@ -1088,9 +1114,12 @@ Children:
             name: ParametersProperty
             validators: null
             value: []
-          previous: *id028
+          previous: *id029
         - !!robotbuilder.data.CommandGroupEntry
-          command: *id029
+          command:
+            base: *id028
+            name: Lift Up _ Seconds
+            properties: *id030
           hasMatch: true
           order: Parallel
           parameters:
@@ -1098,9 +1127,12 @@ Children:
             name: ParametersProperty
             validators: null
             value: []
-          previous: *id030
-        - &id033 !!robotbuilder.data.CommandGroupEntry
-          command: *id031
+          previous: *id031
+        - &id032 !!robotbuilder.data.CommandGroupEntry
+          command:
+            base: *id028
+            name: Auto Line
+            properties: *id023
           hasMatch: true
           order: Sequential
           parameters:
@@ -1108,9 +1140,12 @@ Children:
             name: ParametersProperty
             validators: null
             value: []
-          previous: *id030
+          previous: *id031
         - !!robotbuilder.data.CommandGroupEntry
-          command: *id032
+          command:
+            base: *id028
+            name: Pneumatic Intake Out
+            properties: *id024
           hasMatch: true
           order: Sequential
           parameters:
@@ -1118,7 +1153,7 @@ Children:
             name: ParametersProperty
             validators: null
             value: []
-          previous: *id033
+          previous: *id032
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Command Group
@@ -1144,8 +1179,34 @@ Children:
         name: Commands
         validators: *id026
         value:
-        - &id035 !!robotbuilder.data.CommandGroupEntry
-          command: *id027
+        - &id036 !!robotbuilder.data.CommandGroupEntry
+          command: &id039
+            base: &id034
+              help: A command specifies an action that the robot can perform.
+              name: Command
+              properties:
+              - !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+                name: Requires, type: Subsystem, validators: null, value: None}
+              - !!robotbuilder.data.properties.BooleanProperty {default: true, name: Button on SmartDashboard,
+                validators: null, value: true}
+              - !!robotbuilder.data.properties.ParametersProperty
+                default: []
+                name: Parameters
+                validators: null
+                value: []
+              - !!robotbuilder.data.properties.ParameterSetProperty
+                default: &id033 []
+                name: Parameter presets
+                validators: null
+                value: *id033
+              - !!robotbuilder.data.properties.BooleanProperty {default: false, name: Run When Disabled,
+                validators: null, value: false}
+              - !!robotbuilder.data.properties.BooleanProperty {default: false, name: Autonomous Selection,
+                validators: null, value: false}
+              supports: {}
+              type: Command
+            name: Pneumatic Intake In
+            properties: *id019
           hasMatch: true
           order: Sequential
           parameters:
@@ -1154,8 +1215,11 @@ Children:
             validators: null
             value: []
           previous: null
-        - &id036 !!robotbuilder.data.CommandGroupEntry
-          command: *id034
+        - &id037 !!robotbuilder.data.CommandGroupEntry
+          command:
+            base: *id034
+            name: Strafe Left
+            properties: *id035
           hasMatch: true
           order: Sequential
           parameters:
@@ -1163,9 +1227,12 @@ Children:
             name: ParametersProperty
             validators: null
             value: []
-          previous: *id035
+          previous: *id036
         - !!robotbuilder.data.CommandGroupEntry
-          command: *id029
+          command: &id042
+            base: *id034
+            name: Lift Up _ Seconds
+            properties: *id030
           hasMatch: true
           order: Parallel
           parameters:
@@ -1173,19 +1240,12 @@ Children:
             name: ParametersProperty
             validators: null
             value: []
-          previous: *id036
-        - &id037 !!robotbuilder.data.CommandGroupEntry
-          command: *id031
-          hasMatch: true
-          order: Sequential
-          parameters:
-            default: []
-            name: ParametersProperty
-            validators: null
-            value: []
-          previous: *id036
-        - !!robotbuilder.data.CommandGroupEntry
-          command: *id032
+          previous: *id037
+        - &id038 !!robotbuilder.data.CommandGroupEntry
+          command: &id044
+            base: *id034
+            name: Auto Line
+            properties: *id023
           hasMatch: true
           order: Sequential
           parameters:
@@ -1194,6 +1254,19 @@ Children:
             validators: null
             value: []
           previous: *id037
+        - !!robotbuilder.data.CommandGroupEntry
+          command: &id045
+            base: *id034
+            name: Pneumatic Intake Out
+            properties: *id024
+          hasMatch: true
+          order: Sequential
+          parameters:
+            default: []
+            name: ParametersProperty
+            validators: null
+            value: []
+          previous: *id038
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Command Group
@@ -1219,8 +1292,8 @@ Children:
         name: Commands
         validators: *id026
         value:
-        - &id039 !!robotbuilder.data.CommandGroupEntry
-          command: *id027
+        - &id041 !!robotbuilder.data.CommandGroupEntry
+          command: *id039
           hasMatch: true
           order: Sequential
           parameters:
@@ -1229,38 +1302,11 @@ Children:
             validators: null
             value: []
           previous: null
-        - &id040 !!robotbuilder.data.CommandGroupEntry
-          command: *id038
-          hasMatch: true
-          order: Sequential
-          parameters:
-            default: []
-            name: ParametersProperty
-            validators: null
-            value: []
-          previous: *id039
-        - !!robotbuilder.data.CommandGroupEntry
-          command: *id029
-          hasMatch: true
-          order: Parallel
-          parameters:
-            default: []
-            name: ParametersProperty
-            validators: null
-            value: []
-          previous: *id040
-        - &id041 !!robotbuilder.data.CommandGroupEntry
-          command: *id031
-          hasMatch: true
-          order: Sequential
-          parameters:
-            default: []
-            name: ParametersProperty
-            validators: null
-            value: []
-          previous: *id040
-        - !!robotbuilder.data.CommandGroupEntry
-          command: *id032
+        - &id043 !!robotbuilder.data.CommandGroupEntry
+          command:
+            base: *id034
+            name: Strafe Right
+            properties: *id040
           hasMatch: true
           order: Sequential
           parameters:
@@ -1269,16 +1315,46 @@ Children:
             validators: null
             value: []
           previous: *id041
+        - !!robotbuilder.data.CommandGroupEntry
+          command: *id042
+          hasMatch: true
+          order: Parallel
+          parameters:
+            default: []
+            name: ParametersProperty
+            validators: null
+            value: []
+          previous: *id043
+        - &id046 !!robotbuilder.data.CommandGroupEntry
+          command: *id044
+          hasMatch: true
+          order: Sequential
+          parameters:
+            default: []
+            name: ParametersProperty
+            validators: null
+            value: []
+          previous: *id043
+        - !!robotbuilder.data.CommandGroupEntry
+          command: *id045
+          hasMatch: true
+          order: Sequential
+          parameters:
+            default: []
+            name: ParametersProperty
+            validators: null
+            value: []
+          previous: *id046
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Command Group
     Name: Auto Middle Right
   - Children: []
-    Properties: *id042
+    Properties: *id040
     Base: Command
     Name: Strafe Right
   - Children: []
-    Properties: *id043
+    Properties: *id035
     Base: Command
     Name: Strafe Left
   - Children: []
@@ -1304,7 +1380,7 @@ Children:
     Base: Command
     Name: Drive For _ Seconds
   - Children: []
-    Properties: *id044
+    Properties: *id030
     Base: Command
     Name: Lift Up _ Seconds
   - Children: []
