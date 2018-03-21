@@ -56,13 +56,16 @@ public class AutoRight extends Command {
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
         if(gameData.length() > 0)
         {
-		  if(gameData.charAt(0) == 'L')
+		  if(gameData.charAt(1) == 'R') //If the scale is on the right
 		  {
-			Scheduler.getInstance().add(new AutoLine()); //Make the robot drive over the auto line
+			Scheduler.getInstance().add(new AutoScaleRight()); //Make the robot drive to the right side of the scale
 			commandRun = true;
-		  } else if(gameData.charAt(0) == 'R') {
-			Scheduler.getInstance().add(new AutoRightRight()); //Make the robot drive to the right side of the switch
+		  } else if((gameData.charAt(1) == 'L') && (gameData.charAt(0) == 'R')) //If the scale is on the left and the switch is on the right
+		  {
+			Scheduler.getInstance().add(new AutoSwitchRight()); //Make the robot drive to the right side of the switch
 			commandRun = true;
+		  } else {
+			Scheduler.getInstance().add(new AutoLine()); //Make the robot drive over the line
 		  }
         }
     }
@@ -85,5 +88,6 @@ public class AutoRight extends Command {
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
+    	end();
     }
 }
