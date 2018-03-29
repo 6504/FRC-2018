@@ -40,7 +40,7 @@ public class LiftUpSwitch extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-    	setTimeout(1); //TO-DO: Adjust time so that lift can get over edge of switch
+    	setTimeout(3.4); //TO-DO: Adjust time so that lift can get over edge of switch
     }
 
     // Called repeatedly when this Command is scheduled to run

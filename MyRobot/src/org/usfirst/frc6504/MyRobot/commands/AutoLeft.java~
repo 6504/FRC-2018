@@ -61,7 +61,7 @@ public class AutoLeft extends Command {
 		 {
 			Scheduler.getInstance().add(new AutoScaleLeft()); //Make the robot drive to the left side of the scale
 			commandRun = true;
-		  } else if ((gameData.charAt(1) == 'R') && (gameData.charAt(0) =='L')) //If the scale is on the right and the switch is on the left
+		  } else if ((gameData.charAt(1) == 'R') && (gameData.charAt(0) == 'L')) //If the scale is on the right and the switch is on the left
 		  {
 			Scheduler.getInstance().add(new AutoSwitchLeft()); //Make the robot drive to the left side of the switch
 			commandRun = true;

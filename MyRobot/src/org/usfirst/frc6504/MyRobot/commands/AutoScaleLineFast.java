@@ -45,14 +45,14 @@ public class AutoScaleLineFast extends Command {
     @Override
     protected void initialize() {
     	RobotMap.gyro.reset();
-    	setTimeout(1.46); //TO-DO: Adjust time so robot gets to edge of switch
+    	setTimeout(1.05); //TO-DO: Adjust time so robot gets to edge of switch
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
     	double angle = RobotMap.gyro.getAngle(); // get current heading
-    	robotDrive.driveCartesian(0, 1, -angle*Kp); //TO-DO: Adjust so maximum stable speed can be achieved
+    	robotDrive.driveCartesian(0, .8, -angle*Kp); //TO-DO: Adjust so maximum stable speed can be achieved
     }
 
     // Make this return true when this Command no longer needs to run execute()

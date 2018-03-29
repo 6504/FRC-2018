@@ -40,7 +40,7 @@ public class LiftUpScale extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-    	setTimeout(2); //TO-DO: Adjust time so robot can lift to the maximum
+    	setTimeout(7.5); //TO-DO: Adjust time so robot can lift to the maximum
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -57,7 +57,7 @@ public class LiftUpScale extends Command {
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        return isTimedOut();
+        return isTimedOut() || LiftStage1Subsystem.limitReached();
     }
 
     // Called once after isFinished returns true

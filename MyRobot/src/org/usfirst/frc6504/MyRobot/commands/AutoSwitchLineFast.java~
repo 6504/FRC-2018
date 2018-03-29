@@ -43,9 +43,10 @@ public class AutoSwitchLineFast extends Command {
     @Override
     protected void initialize() {
     	RobotMap.gyro.reset();
-    	setTimeout(1.25); //TO-DO: Adjust value accordingly
+    	setTimeout(.8); //TO-DO: Adjust value accordingly
     }
 
+    
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
