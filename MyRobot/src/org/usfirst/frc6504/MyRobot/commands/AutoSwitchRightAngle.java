@@ -49,13 +49,13 @@ public class AutoSwitchRightAngle extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-    	robotDrive.driveCartesian(0, 0, -0.5);
+    	robotDrive.driveCartesian(0, 0, -0.3);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        return  RobotMap.gyro.getAngle() <= -25;
+        return RobotMap.gyro.getAngle() <= -85;
     }
 
     // Called once after isFinished returns true

@@ -50,15 +50,14 @@ public class DriveBackward extends Command {
     @Override
     protected void initialize() {
     	RobotMap.gyro.reset();
-    	setTimeout(4);
+    	setTimeout(.6);
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
     	double angle = RobotMap.gyro.getAngle(); // get current heading
-    	robotDrive.driveCartesian(angle*Kp, 1, 0, 0);
-    	Timer.delay(0.004);
+    	robotDrive.driveCartesian(0, -.5, -angle*Kp);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -77,5 +76,6 @@ public class DriveBackward extends Command {
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
+    	end();
     }
 }

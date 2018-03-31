@@ -51,7 +51,8 @@ public class DriveLeftDiagonally extends Command {
     @Override
     protected void execute() {
     	double angle = RobotMap.gyro.getAngle(); // get current heading
-    	robotDrive.drivePolar(.8, 13.5, -angle*Kp); //TO-DO: Adjust angle so robot drives directly to the scale
+    	//robotDrive.drivePolar(.8, 35, -angle*Kp); //TO-DO: Adjust angle so robot drives directly to the scale
+    	robotDrive.drivePolar(.8, 27.5, -angle*Kp);
     }
 
     // Make this return true when this Command no longer needs to run execute()

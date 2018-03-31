@@ -44,14 +44,14 @@ public class AutoScaleDriveBackwardsAngleRight extends Command {
     @Override
     protected void initialize() {
     	RobotMap.gyro.reset();
-    	setTimeout(.6); //TO-DO: Adjust time so robot drives away from scale
+    	setTimeout(.8); //TO-DO: Adjust time so robot drives away from scale
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
     	double angle = RobotMap.gyro.getAngle();
-    	robotDrive.drivePolar(-.80, -7.52, -angle*Kp); //TO-DO: Adjust angle so robot drives away from the scale
+    	robotDrive.drivePolar(-.5, -7.52, -angle*Kp); //TO-DO: Adjust angle so robot drives away from the scale
     }
 
     // Make this return true when this Command no longer needs to run execute()

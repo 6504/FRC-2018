@@ -39,20 +39,18 @@ public class AutoSwitchDiagonallyLeft extends Command {
     }
     private final MecanumDrive robotDrive = RobotMap.driveTrainRobotDrive;
     double Kp = 0.03;
-    double previousAngle;
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-    	previousAngle = RobotMap.gyro.getAngle();
-        setTimeout(.5); //TO-DO: Adjust time so robot makes contact with the corner of the switch
+    	RobotMap.gyro.reset();
+        setTimeout(.6); //TO-DO: Adjust time so robot makes contact with the corner of the switch
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
     	double angle = RobotMap.gyro.getAngle(); // get current heading
-    	double neededAngle = previousAngle - angle;
-    	robotDrive.driveCartesian(0, -.6, -neededAngle*Kp); //Try to steer towards an angle of 0 degrees while maintaining gyro angle
+    	robotDrive.driveCartesian(0, 1, -angle*Kp); //Try to steer towards an angle of 0 degrees while maintaining gyro angle
     }
 
     // Make this return true when this Command no longer needs to run execute()

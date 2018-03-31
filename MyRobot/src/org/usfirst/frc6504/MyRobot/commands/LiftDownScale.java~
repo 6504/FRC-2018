@@ -38,7 +38,7 @@ public class LiftDownScale extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-    	setTimeout(1); //TO-DO: Adjust time so that lift goes down fully
+    	setTimeout(7.3); //TO-DO: Adjust time so that lift goes down fully
     }
 
     // Called repeatedly when this Command is scheduled to run

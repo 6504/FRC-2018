@@ -102,8 +102,8 @@ public class OI {
         SmartDashboard.putData("Auto Scale Left", new AutoScaleLeft());
         SmartDashboard.putData("Drive Right Diagonally", new DriveRightDiagonally());
         SmartDashboard.putData("Auto Scale Drive Backwards Angle", new AutoScaleDriveBackwardsAngle());
-        SmartDashboard.putData("Auto Switch Left", new AutoSwitchLeft());
         SmartDashboard.putData("Auto Switch Left Angle", new AutoSwitchLeftAngle());
+        SmartDashboard.putData("Auto Switch Left", new AutoSwitchLeft());
         SmartDashboard.putData("Auto Switch Diagonally Right", new AutoSwitchDiagonallyRight());
         SmartDashboard.putData("Auto Right", new AutoRight());
         SmartDashboard.putData("Auto Scale Right", new AutoScaleRight());

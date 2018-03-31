@@ -10,8 +10,12 @@
 
 
 package org.usfirst.frc6504.MyRobot.commands;
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.drive.MecanumDrive;
+
 import org.usfirst.frc6504.MyRobot.Robot;
+import org.usfirst.frc6504.MyRobot.RobotMap;
 
 /**
  *
@@ -36,29 +40,37 @@ public class TurnRight extends Command {
     }
 
     // Called just before this Command runs the first time
+    private final MecanumDrive robotDrive = RobotMap.driveTrainRobotDrive;
+    private final AnalogGyro myGyro = RobotMap.driveTrainMyGyro;
+    
+    // Called just before this Command runs the first time
     @Override
     protected void initialize() {
+    	RobotMap.gyro.reset();
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
+    	robotDrive.driveCartesian(0, 0, 0.5, 0);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        return false;
+        return RobotMap.gyro.getAngle() >= 75.0;
     }
 
     // Called once after isFinished returns true
     @Override
     protected void end() {
+    	Robot.driveTrain.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
+    	end();
     }
 }
