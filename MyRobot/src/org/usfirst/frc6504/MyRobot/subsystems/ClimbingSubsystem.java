@@ -55,6 +55,8 @@ public class ClimbingSubsystem extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
+    
+    //Method to stop all motors
     public void stop() {
     	climber1.set(0);
     	climber2.set(0);
