@@ -51,6 +51,8 @@ public class PneumaticsSubsystem extends Subsystem {
     @Override
     public void periodic() {
         // Put code here to be run every loop
+    	
+    	//Transmits whether the air pressure is low and the power consumption of the compressor
         SmartDashboard.putBoolean("Air pressure is fine", compressor1.getPressureSwitchValue()); //Tells whether pressure is low
         SmartDashboard.putNumber("Compressor power", compressor1.getCompressorCurrent());
     }
@@ -58,15 +60,9 @@ public class PneumaticsSubsystem extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     
-    public void extend() {
-    	doubleSolenoid1.set(DoubleSolenoid.Value.kForward);
-    }
-    public void retract() {
-    	doubleSolenoid1.set(DoubleSolenoid.Value.kReverse);
-    }
+    //Stop the pneumatics
     public void stop() {
     	doubleSolenoid1.set(DoubleSolenoid.Value.kOff);
     }
-
 }
 

@@ -45,8 +45,8 @@ public class AutoScaleLeft extends CommandGroup {
         addSequential(new AutoScaleLineFast());
         addSequential(new LiftUpScale());
         addParallel(new KeepLiftUpScale());
-        addSequential(new DriveRightDiagonally());
-        addSequential(new AutoScaleDriveBackwardsAngle());
+        addSequential(new DriveRightForwardMore());
+        addSequential(new AutoScaleDriveBackwardsLeft());
         addSequential(new TurnRight());
         addSequential(new DriveForward());
         addSequential(new PneumaticIntakeOutTimed());

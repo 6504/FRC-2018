@@ -47,23 +47,25 @@ public class LiftUp extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() { 
+       //Set the lift motor power to forwards until the limit switch has been triggered
        if(LiftStage1Subsystem.limitReached()) {
     	   RobotMap.liftStage1SubsystemSpeedController1.set(0);
        } else {
     	   RobotMap.liftStage1SubsystemSpeedController1.set(1);
        }
-       //RobotMap.liftStage2SubsystemSpeedController1.set(1);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
+    	//Stop making the lift go up when the limit switch has been reached
         return LiftStage1Subsystem.limitReached();
     }
 
     // Called once after isFinished returns true
     @Override
     protected void end() {
+    	//Stop lift motor
     	Robot.liftStage1Subsystem.stop(); 
     }
 

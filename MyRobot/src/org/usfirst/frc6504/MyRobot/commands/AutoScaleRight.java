@@ -45,7 +45,7 @@ public class AutoScaleRight extends CommandGroup {
         addSequential(new AutoScaleLineFast());
         addSequential(new LiftUpScale());
         addParallel(new KeepLiftUpScale());
-        addSequential(new DriveLeftDiagonally());
+        addSequential(new DriveLeftForwardMore());
         addSequential(new AutoScaleDriveBackwardsAngleRight());
         addSequential(new TurnLeft());
         addSequential(new DriveForward());

@@ -49,6 +49,7 @@ public class LiftStage1Subsystem extends Subsystem {
         // setDefaultCommand(new MySpecialCommand());
     }
 
+    //Sends a value of true or false based on whether the limit switch has been triggered
     public static boolean limitReached() {
     	boolean reachedLimit;
     	if(RobotMap.liftStage1SubsystemLimitSwitch1.get()) {
@@ -62,14 +63,15 @@ public class LiftStage1Subsystem extends Subsystem {
     @Override
     public void periodic() {
         // Put code here to be run every loop
-        SmartDashboard.putBoolean("Lift limit reached", limitReached());
+        SmartDashboard.putBoolean("Lift limit reached", limitReached()); //Transmit whether the limit switch has been triggered
     }
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
+    
+    //Stop method, stops motor
     public void stop() {
     	speedController1.set(0);
-    	speedController1.stopMotor();
     }
 }
 

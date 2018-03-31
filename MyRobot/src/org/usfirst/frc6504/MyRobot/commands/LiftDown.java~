@@ -45,8 +45,8 @@ public class LiftDown extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
+    	//Set the power of the lift motor to run in the reverse direction
         RobotMap.liftStage1SubsystemSpeedController1.set(-1); 
-    	//RobotMap.liftStage2SubsystemSpeedController1.set(-1);
     }
     // Make this return true when this Command no longer needs to run execute()
     @Override
@@ -57,8 +57,8 @@ public class LiftDown extends Command {
     // Called once after isFinished returns true
     @Override
     protected void end() {
+    	//Stop lift motor
     	Robot.liftStage1Subsystem.stop();
-    	//Robot.liftStage2Subsystem.stop();
     }
 
     // Called when another command which requires one or more of the same

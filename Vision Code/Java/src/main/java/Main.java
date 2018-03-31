@@ -11,6 +11,8 @@ import org.opencv.core.Rect;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.imgproc.Moments;
 
+//BROKEN VISION CODE, DO NOT USE
+
 public class Main {
   public static void main(String[] args) {
     // Loads our OpenCV library. This MUST be included

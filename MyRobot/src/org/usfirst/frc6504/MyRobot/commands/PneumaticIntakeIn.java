@@ -45,7 +45,7 @@ public class PneumaticIntakeIn extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-    	//This will make the pneumatic extend
+    	//This will make the pneumatic retract
     	RobotMap.pneumaticsSubsystemDoubleSolenoid1.set(DoubleSolenoid.Value.kForward);
     }
 

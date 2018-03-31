@@ -41,11 +41,12 @@ public class AutoRight extends Command {
         requires(Robot.pneumaticsSubsystem);
     }
     
+    //Boolean to tell whether the auto command has been run
     private boolean commandRun;
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-    	RobotMap.gyro.reset();
+    	RobotMap.gyro.reset(); //Reset the gyro angle to 0
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -73,12 +74,13 @@ public class AutoRight extends Command {
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        return commandRun;
+        return commandRun; //Stop running when the desired auto command has been run
     }
 
     // Called once after isFinished returns true
     @Override
     protected void end() {
+    	//Stop all motors and pneumatics
     	Robot.driveTrain.stop();
     	Robot.liftStage1Subsystem.stop();
     	Robot.pneumaticsSubsystem.stop();

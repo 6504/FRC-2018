@@ -44,6 +44,7 @@ public class ClimberUp extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
+    	//Set both climber motors to 60% power
     	RobotMap.climbingSubsystemClimber1.set(.6);
     	RobotMap.climbingSubsystemClimber2.set(.6);
     }
@@ -57,6 +58,7 @@ public class ClimberUp extends Command {
     // Called once after isFinished returns true
     @Override
     protected void end() {
+    	//Stop all climbing motors
     	Robot.climbingSubsystem.stop();
     }
 

@@ -40,13 +40,13 @@ public class LiftUpScale extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-    	setTimeout(7.5); //TO-DO: Adjust time so robot can lift to the maximum
+    	setTimeout(7.5);
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-    	//Lift for the amount of time, or until the lift limit has been reached
+    	//Lift for the amount of time, or until the limit switch has been triggered
     	if(LiftStage1Subsystem.limitReached()) {
      	   RobotMap.liftStage1SubsystemSpeedController1.set(0);
         } else {
@@ -57,12 +57,14 @@ public class LiftUpScale extends Command {
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
+    	//Stop the command if the time has been reached or the limit switch has been triggered
         return isTimedOut() || LiftStage1Subsystem.limitReached();
     }
 
     // Called once after isFinished returns true
     @Override
     protected void end() {
+    	//Stop lift motor
     	Robot.liftStage1Subsystem.stop();
     }
 

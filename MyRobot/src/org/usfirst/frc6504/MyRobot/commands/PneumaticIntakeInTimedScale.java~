@@ -46,7 +46,7 @@ public class PneumaticIntakeInTimedScale extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-    	//This will make the pneumatic extend
+    	//This will make the pneumatic retract
     	RobotMap.pneumaticsSubsystemDoubleSolenoid1.set(DoubleSolenoid.Value.kForward);
     }
 
@@ -59,6 +59,7 @@ public class PneumaticIntakeInTimedScale extends Command {
     // Called once after isFinished returns true
     @Override
     protected void end() {
+    	//Stop pneumatics
     	Robot.pneumaticsSubsystem.stop();
     }
 

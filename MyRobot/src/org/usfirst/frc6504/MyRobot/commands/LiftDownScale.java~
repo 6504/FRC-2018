@@ -38,12 +38,13 @@ public class LiftDownScale extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-    	setTimeout(7.3); //TO-DO: Adjust time so that lift goes down fully
+    	setTimeout(7.3);
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
+    	//Set the power of the lift motor to run in the reverse direction
     	RobotMap.liftStage1SubsystemSpeedController1.set(-1); 
     }
 
@@ -56,6 +57,7 @@ public class LiftDownScale extends Command {
     // Called once after isFinished returns true
     @Override
     protected void end() {
+    	//Stop lift motor
     	Robot.liftStage1Subsystem.stop();
     }
 
