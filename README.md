@@ -1,7 +1,7 @@
 # FRC-2018
 **Robot Code** | [Vision Code](https://github.com/6504/FRC-2018-Vision) | [Dashboard](https://github.com/6504/JagwiresDash)
 
-This is the code that was used to control FRC Team 6504's robot during the 2018 FRC game, FIRST Power UP
+This is the code that was used to control FRC Team 6504's robot during the 2018 FRC game, FIRST Power UP.
 
 ## Robot Code Features 
 * Mecanum Drive
